@@ -1,0 +1,10 @@
+{
+    "workbench.colorTheme": "Solarized Light",
+    "security.workspace.trust.untrustedFiles": "open",
+    "terminal.integrated.defaultProfile.windows": "Git Bash",
+    "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
+    "files.autoSave": "afterDelay",
+    "editor.fontLigatures": true,
+    "git.enableSmartCommit": true,
+    "git.autofetch": "all"
+}
