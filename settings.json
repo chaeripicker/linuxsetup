@@ -5,7 +5,6 @@
     "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
     "files.autoSave": "afterDelay",
     "editor.fontLigatures": true,
-    "git.enableSmartCommit": true,
     "git.autofetch": "all",
     "git.confirmSync": false
 }
