@@ -1,0 +1,3 @@
+git config --global user.email "noreply@google.com"
+git config --global user.name "chaeri"
+git config --global core.editor vim
