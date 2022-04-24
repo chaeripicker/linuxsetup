@@ -15,10 +15,10 @@ mv fira/ttf/FiraCode-Regular.ttf FiraCode-Regular.ttf
 linuxsetup/gitsetup
 cp linuxsetup/.bash_profile ~
 cp linuxsetup/.bashrc ~
-mkdir ~/AppData/Roaming/Code/User
+mkdir -p ~/AppData/Roaming/Code/User
 cp linuxsetup/settings.json ~/AppData/Roaming/Code/User
 alias code=code/bin/code
+echo 'alias code=code/bin/code' >> ~/.bashrc
 code --install-extension ms-dotnettools.csharp
-code TheDarkDungeons
 echo done.
 read
