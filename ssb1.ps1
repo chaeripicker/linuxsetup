@@ -5,3 +5,4 @@ git clone https://github.com/chaeripicker/linuxsetup.git";
 New-Item C:\Users\CKIRUser\.bash_profile -Value "test -f ~/.profile && . ~/.profile
 test -f ~/.bashrc && . ~/.bashrc";
 Start-Process 'C:\Program Files\Git\git-bash.exe' C:\Users\CKIRUser\Desktop\linuxsetup\ssb3.sh;
+exit;
