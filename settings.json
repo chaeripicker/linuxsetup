@@ -7,5 +7,4 @@
     "editor.fontLigatures": true,
     "git.autofetch": "all",
     "git.confirmSync": false,
-    "omnisharp.useModernNet": true
 }
