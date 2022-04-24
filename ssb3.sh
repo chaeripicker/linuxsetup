@@ -16,7 +16,7 @@ cp linuxsetup/.bash_profile ~
 cp linuxsetup/.bashrc ~
 mkdir -p ~/AppData/Roaming/Code/User
 cp linuxsetup/settings.json ~/AppData/Roaming/Code/User
-alias code=code/bin/code
+alias code='~/Desktop/code/bin/code'
 echo 'alias code=code/bin/code' >> ~/.bashrc
 fontview ~/Desktop/fira/ttf/FiraCode-Regular.ttf
 code --install-extension ms-dotnettools.csharp
