@@ -7,4 +7,5 @@
     "editor.fontLigatures": true,
     "git.autofetch": "all",
     "git.confirmSync": false,
+    "editor.renderWhitespace": "trailing",
 }
