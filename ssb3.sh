@@ -17,7 +17,7 @@ cp linuxsetup/.bashrc ~
 mkdir -p ~/AppData/Roaming/Code/User
 cp linuxsetup/settings.json ~/AppData/Roaming/Code/User
 alias code='~/Desktop/code/bin/code'
-echo "code='~/Desktop/code/bin/code'" >> ~/.bashrc
+echo "alias code='~/Desktop/code/bin/code'" >> ~/.bashrc
 fontview ~/Desktop/fira/ttf/FiraCode-Regular.ttf &
 code --install-extension ms-dotnettools.csharp
 code ~/TheDarkDungeons &
