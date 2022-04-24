@@ -6,3 +6,4 @@ New-Item C:\Users\CKIRUser\.bash_profile -Value "test -f ~/.profile && . ~/.prof
 test -f ~/.bashrc && . ~/.bashrc";
 Start-Process 'C:\Program Files\Git\git-bash.exe' C:\Users\CKIRUser\Desktop\linuxsetup\ssb3.sh;
 Start-Process 'C:\Program Files\Git\git-bash.exe' -WorkingDirectory 'C:\Users\CKIRUser\Desktop';
+fontview C:\Users\CKIRUser\Desktop\fira\ttf\FiraCode-Regular.ttf;

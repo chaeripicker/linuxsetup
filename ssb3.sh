@@ -11,7 +11,6 @@ mv ~/Downloads/VSCode-win32-x64-1.66.2.zip ~/Desktop/VSCode-win32-x64-1.66.2.zip
 mv ~/Downloads/Fira_Code_v6.2.zip ~/Desktop/Fira_Code_v6.2.zip
 unzip VSCode-win32-x64-1.66.2.zip -d code
 unzip Fira_Code_v6.2.zip -d fira
-mv fira/ttf/FiraCode-Regular.ttf FiraCode-Regular.ttf
 linuxsetup/gitsetup
 cp linuxsetup/.bash_profile ~
 cp linuxsetup/.bashrc ~
