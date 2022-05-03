@@ -8,6 +8,8 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'maximbaz/lightline-ale'
+Plug 'puremourning/vimspector'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Settings: {{{
@@ -44,10 +46,13 @@ set noshowmode
 set mouse=a
 set updatetime=1000
 " my maps
-map <space>t <Esc>:tabnew<CR>
-map <space>e <Esc>:E<CR>
-map <space><space> <Esc>:
-imap <space><space> <Esc>:
+map <space>t :tabnew<CR>
+map <space>e :E<CR>
+map <space>te :Tex<CR>
+map <space>g :G<space>
+map <space><space> :
+map <space>/ :noh<CR>
+imap [<space> [<space>]<space>
 " }}}
 
 
@@ -64,6 +69,9 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " Asyncomplete: {{{
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
 
 " Sharpenup: {{{
@@ -72,7 +80,7 @@ let g:asyncomplete_auto_completeopt = 0
 let g:sharpenup_map_prefix = '<Space>s'
 let g:sharpenup_statusline_opts = {
 \ 'TextLoading': ' O#: %s loading... (%p of %P) ',
-\ 'TextReady': 'O#',
+\ 'TextReady': '#',
 \ 'TextDead': ' O#: Not running ',
 \ 'Highlight': 0,
 \ 'HiLoading': 'SharpenUpLoading',
@@ -101,7 +109,7 @@ let g:OmniSharp_popup_mappings = {
 \}
 
 let g:OmniSharp_want_snippet = 1
-
+let g:OmniSharp_selector_findusages = 'fzf'
 let g:OmniSharp_highlight_groups = {
 \ 'ExcludedCode': 'NonText'
 \}
@@ -117,7 +125,7 @@ let g:lightline = {
 \   ]
 \ },
 \ 'inactive': {
-\   'right': [['lineinfo'], ['percent'], ['sharpenup']]
+\   'right': [['lineinfo']]
 \ },
 \ 'component': {
 \   'sharpenup': sharpenup#statusline#Build()
@@ -135,8 +143,25 @@ let g:lightline = {
   \   'linter_warnings': 'warning',
   \   'linter_errors': 'error',
   \   'linter_ok': 'right'
-\  }
+\  },
+\ 'component_function': {
+      \   'fileformat': 'LightlineFileformat',
+      \   'filetype': 'LightlineFiletype',
+      \   'fileencoding': 'LightlineFileencoding',
+      \ },
 \}
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? &fileencoding : ''
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
 " Use unicode chars for ale indicators in the statusline
 let g:lightline#ale#indicator_checking = "~"
 "let g:lightline#ale#indicator_infos = "\uf129 "
