@@ -129,3 +129,4 @@ alias gcma='git commit -a'
 alias gcmap='git commit -a && git push'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export VISUAL=vim
+export PATH=~/chaeriapps/:$PATH

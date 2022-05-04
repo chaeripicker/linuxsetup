@@ -20,6 +20,7 @@ scriptencoding utf-8
 
 set completeopt=menuone,noinsert,noselect,popuphidden
 set completepopup=highlight:Pmenu,border:off
+set t_Co=256
 
 set backspace=indent,eol,start
 set expandtab
@@ -52,7 +53,10 @@ map <space>te :Tex<CR>
 map <space>g :G<space>
 map <space><space> :
 map <space>/ :noh<CR>
+map <space>rc :e $MYVIMRC<CR>
 imap [<space> [<space>]<space>
+imap {<CR> {<CR>}<esc>O
+map $$ A;<esc>
 " }}}
 
 
@@ -71,6 +75,8 @@ let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <space> pumvisible() ? "\<C-n><space>" : "\<space>"
+inoremap <expr> $$ pumvisible() ? "\<C-n>;" : ";"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
 
