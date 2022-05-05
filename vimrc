@@ -121,6 +121,11 @@ let g:OmniSharp_highlight_groups = {
 \}
 " }}}
 
+" Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+map <space>pid :!getddpid<CR>
+map <space>5 :call vimspector#Launch()<CR>
+
 let g:lightline = {
 \ 'colorscheme': 'solarized',
 \ 'active': {
