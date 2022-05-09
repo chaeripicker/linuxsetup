@@ -121,7 +121,7 @@ fi
 alias lyd='lynx https://lite.duckduckgo.com/lite'
 alias ld='links2 https://lite.duckduckgo.com/lite'
 alias dn='dotnet'
-alias dnr='dotnet run; reset'
+alias dnr='dotnet run && reset'
 alias cddd='cd ~/TheDarkDungeons/DarkDungeon'
 alias cdd='cd ~/TheDarkDungeons/DarkDungeon && git fetch && git status'
 alias cddr='cd ~/TheDarkDungeons/DarkDungeon && dotnet run'

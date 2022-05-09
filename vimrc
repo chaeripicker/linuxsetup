@@ -14,13 +14,13 @@ call plug#end()
 
 " Settings: {{{
 filetype indent plugin on
-if !exists('g:syntax_on') | syntax enable | endif
+" if !exists('g:syntax_on') | syntax enable | endif
 set encoding=utf-8
 scriptencoding utf-8
+set background=dark
 
 set completeopt=menuone,noinsert,noselect,popuphidden
 set completepopup=highlight:Pmenu,border:off
-set t_Co=256
 
 set backspace=indent,eol,start
 set expandtab
@@ -57,6 +57,36 @@ map <space>rc :e $MYVIMRC<CR>
 imap [<space> [<space>]<space>
 imap {<CR> {<CR>}<esc>O
 map $$ A;<esc>
+map K :OmniSharpSignatureHelp<CR>
+map <space>l :colorscheme default<CR>:colorscheme rose-pine-dark<CR>
+"korean mode
+map ㅁ a
+map ㅠ b
+map ㅊ c
+map ㅇ d
+map ㄷ e
+map ㄹ f
+map ㅎ g
+map ㅗ h
+map ㅑ i
+map ㅓ j
+map ㅏ k
+map ㅣ l
+map ㅡ m
+map ㅜ n
+map ㅐ o
+map ㅔ p
+map ㅂ q
+map ㄱ r
+map ㄴ s
+map ㅅ t
+map ㅕ u
+map ㅍ v
+map ㅈ w
+map ㅌ x
+map ㅛ y
+map ㅋ z
+
 " }}}
 
 
@@ -85,7 +115,7 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " :OmniSharpGotoDefinition
 let g:sharpenup_map_prefix = '<Space>s'
 let g:sharpenup_statusline_opts = {
-\ 'TextLoading': ' O#: %s loading... (%p of %P) ',
+\ 'TextLoading': ' O#: %s ~ (%p / %P) ',
 \ 'TextReady': '#',
 \ 'TextDead': ' O#: Not running ',
 \ 'Highlight': 0,
@@ -115,7 +145,6 @@ let g:OmniSharp_popup_mappings = {
 \}
 
 let g:OmniSharp_want_snippet = 1
-let g:OmniSharp_selector_findusages = 'fzf'
 let g:OmniSharp_highlight_groups = {
 \ 'ExcludedCode': 'NonText'
 \}
@@ -127,7 +156,7 @@ map <space>pid :!getddpid<CR>
 map <space>5 :call vimspector#Launch()<CR>
 
 let g:lightline = {
-\ 'colorscheme': 'solarized',
+\ 'colorscheme': 'rosepine',
 \ 'active': {
 \   'right': [
 \     ['linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok'],
