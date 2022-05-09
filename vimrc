@@ -17,7 +17,6 @@ filetype indent plugin on
 " if !exists('g:syntax_on') | syntax enable | endif
 set encoding=utf-8
 scriptencoding utf-8
-set background=dark
 
 set completeopt=menuone,noinsert,noselect,popuphidden
 set completepopup=highlight:Pmenu,border:off
@@ -58,7 +57,6 @@ imap [<space> [<space>]<space>
 imap {<CR> {<CR>}<esc>O
 map $$ A;<esc>
 map K :OmniSharpSignatureHelp<CR>
-map <space>l :colorscheme default<CR>:colorscheme rose-pine-dark<CR>
 "korean mode
 map ㅁ a
 map ㅠ b
@@ -105,8 +103,6 @@ let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <space> pumvisible() ? "\<C-n><space>" : "\<space>"
-inoremap <expr> $$ pumvisible() ? "\<C-n>;" : ";"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
 
@@ -155,6 +151,7 @@ let g:vimspector_enable_mappings = 'HUMAN'
 map <space>pid :!getddpid<CR>
 map <space>5 :call vimspector#Launch()<CR>
 
+" Lightline
 let g:lightline = {
 \ 'colorscheme': 'rosepine',
 \ 'active': {
@@ -208,3 +205,21 @@ let g:lightline#ale#indicator_checking = "~"
 "let g:lightline#ale#indicator_warnings = "\uf071 "
 "let g:lightline#ale#indicator_errors = "\uf05e "
 let g:lightline#ale#indicator_ok = "OK"
+
+" Colorscheme
+colorscheme rose-pine-light
+map <space>c :call MyToggleRosePine()<CR>
+" includes dummy function
+function! MyToggleRosePine()
+    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+    if &background == 'light'
+        colorscheme default
+        colorscheme rose-pine-dark
+    else
+        colorscheme default
+        colorscheme rose-pine-light
+    endif
+    execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/rosepine.vim')
+    call lightline#colorscheme()
+    call lightline#update()
+endfunction
