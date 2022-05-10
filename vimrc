@@ -7,6 +7,7 @@ Plug 'dense-analysis/ale'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
+Plug 'itchyny/vim-cursorword'
 Plug 'maximbaz/lightline-ale'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
@@ -102,7 +103,7 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " Asyncomplete: {{{
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
@@ -128,6 +129,7 @@ let g:sharpenup_codeactions = 0
 " }}}
 
 " OmniSharp: {{{
+let g:OmniSharp_server_use_net6 = 1
 let g:OmniSharp_popup_position = 'peek'
   let g:OmniSharp_popup_options = {
   \ 'highlight': 'Normal',
@@ -150,7 +152,7 @@ let g:OmniSharp_highlight_groups = {
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 map <space>pid :!getddpid<CR>
-map <space>5 :call vimspector#Launch()<CR>
+map <space>5 :call vimspector#Launch()<CR>1<CR>
 
 " Lightline
 let g:lightline = {
@@ -210,16 +212,18 @@ let g:lightline#ale#indicator_ok = "✓"
 " Colorscheme
 colorscheme rose-pine-light
 map <space>c :call MyToggleRosePine()<CR>
-" includes dummy function
+
 function! MyToggleRosePine()
     if &background == 'light'
         colorscheme default
         colorscheme rose-pine-dark
+        highlight ALEWarning ctermbg=darkgreen
     else
         colorscheme default
         colorscheme rose-pine-light
+        highlight ALEError ctermbg=lightred
+        highlight ALEWarning ctermbg=lightblue
     endif
-    call LightlineUpdateColorscheme()
 endfunction
 
 function! LightlineUpdateColorscheme()
@@ -227,6 +231,8 @@ function! LightlineUpdateColorscheme()
     call lightline#colorscheme()
     call lightline#update()
 endfunction
-highlight Pmenu ctermbg=blue
-
-autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+autocmd colorscheme * call LightlineUpdateColorscheme()
+autocmd colorscheme * highlight Pmenu ctermbg=blue
+autocmd colorscheme * highlight signcolumn ctermbg=black
+autocmd colorscheme * highlight visual ctermbg=black
+autocmd colorscheme * highlight ALEError ctermbg=black ctermfg=red cterm=underline
