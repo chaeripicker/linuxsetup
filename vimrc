@@ -57,6 +57,7 @@ imap [<space> [<space>]<space>
 imap {<CR> {<CR>}<esc>O
 map $$ A;<esc>
 map K :OmniSharpSignatureHelp<CR>
+map <cr><cr> o<esc>
 "korean mode
 map ㅁ a
 map ㅠ b
@@ -204,14 +205,13 @@ let g:lightline#ale#indicator_checking = "~"
 "let g:lightline#ale#indicator_infos = "\uf129 "
 "let g:lightline#ale#indicator_warnings = "\uf071 "
 "let g:lightline#ale#indicator_errors = "\uf05e "
-let g:lightline#ale#indicator_ok = "OK"
+let g:lightline#ale#indicator_ok = "✓"
 
 " Colorscheme
 colorscheme rose-pine-light
 map <space>c :call MyToggleRosePine()<CR>
 " includes dummy function
 function! MyToggleRosePine()
-    inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
     if &background == 'light'
         colorscheme default
         colorscheme rose-pine-dark
@@ -219,7 +219,14 @@ function! MyToggleRosePine()
         colorscheme default
         colorscheme rose-pine-light
     endif
+    call LightlineUpdateColorscheme()
+endfunction
+
+function! LightlineUpdateColorscheme()
     execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/rosepine.vim')
     call lightline#colorscheme()
     call lightline#update()
 endfunction
+highlight Pmenu ctermbg=blue
+
+autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
