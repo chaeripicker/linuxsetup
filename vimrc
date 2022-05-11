@@ -4,7 +4,7 @@ Plug 'OmniSharp/omnisharp-vim'
 Plug 'sirver/ultisnips'
 Plug 'nickspoons/vim-sharpenup'
 Plug 'dense-analysis/ale'
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'itchyny/vim-cursorword'
@@ -52,6 +52,7 @@ map <space>g :G<space>
 map <space><space> :
 map <space>/ :noh<CR>
 map <space>rc :e $MYVIMRC<CR>
+map <space>rr :source $MYVIMRC<CR>
 imap [<space> [<space>]<space>
 imap {<CR> {<CR>}<esc>O
 map $$ A;<esc>
@@ -59,12 +60,17 @@ map K :OmniSharpSignatureHelp<CR>
 map gD :tabnew<CR><c-o>gd
 map <cr><cr> o<esc>
 "fzf.vim
-map <cr>f :GFiles<cr>
-map <cr>F :GFiles?<cr>
+map <cr>f :Files<cr>
+map <cr>g :GFiles<cr>
+map <cr>G :GFiles?<cr>
 map <cr>L :Lines<cr>
 map <cr>l :BLines<cr>
 map <cr>C :Commits<cr>
-map <cr>c :Commits<cr>
+map <cr>c :BCommits<cr>
+map <cr><space> :History:<cr>
+map <cr>h :History<cr>
+map <cr>H :History/<cr>
+map <cr>m :Commands<cr>
 
 "korean mode
 map ㅁ a
@@ -244,4 +250,3 @@ autocmd colorscheme * highlight Pmenu ctermbg=blue
 autocmd colorscheme * highlight signcolumn ctermbg=black
 autocmd colorscheme * highlight visual ctermbg=black
 autocmd colorscheme * highlight ALEError ctermfg=red ctermbg=lightyellow
-autocmd colorscheme * highlight MatchParen ctermbg=black cterm=bold

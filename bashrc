@@ -118,6 +118,7 @@ if ! shopt -oq posix; then
 fi
 
 #MYBASHRC
+alias brc='vim ~/.bashrc'
 alias lyd='lynx https://lite.duckduckgo.com/lite'
 alias ld='links2 https://lite.duckduckgo.com/lite'
 alias dn='dotnet'
@@ -133,4 +134,7 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export VISUAL=vim
 export PATH=~/chaeriapps/:$PATH
 export BAT_THEME='base16'
+export LESS='--mouse'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export FZF_COMPLETION_TRIGGER='``'
+export FZF_DEFAULT_OPTS='--preview "bat --style=auto --color=always --wrap=character --line-range :500 {}"'
