@@ -48,8 +48,6 @@ set mouse=a
 set updatetime=1000
 " my maps
 map <space>t :tabnew<CR>
-map <space>e :E<CR>
-map <space>te :Tex<CR>
 map <space>g :G<space>
 map <space><space> :
 map <space>/ :noh<CR>
@@ -58,7 +56,16 @@ imap [<space> [<space>]<space>
 imap {<CR> {<CR>}<esc>O
 map $$ A;<esc>
 map K :OmniSharpSignatureHelp<CR>
+map gD :tabnew<CR><c-o>gd
 map <cr><cr> o<esc>
+"fzf.vim
+map <cr>f :GFiles<cr>
+map <cr>F :GFiles?<cr>
+map <cr>L :Lines<cr>
+map <cr>l :BLines<cr>
+map <cr>C :Commits<cr>
+map <cr>c :Commits<cr>
+
 "korean mode
 map ㅁ a
 map ㅠ b
@@ -104,6 +111,7 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
 autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> . pumvisible() ? "\<C-n>." : "."
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
@@ -151,8 +159,9 @@ let g:OmniSharp_highlight_groups = {
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
-map <space>pid :!getddpid<CR>
-map <space>5 :call vimspector#Launch()<CR>1<CR>
+map <cr>pid :!getddpid<CR>
+map <space>5 :call vimspector#Launch()<CR>
+map <space>sdb :OmniSharpDebugProject<cr>
 
 " Lightline
 let g:lightline = {
@@ -221,8 +230,7 @@ function! MyToggleRosePine()
     else
         colorscheme default
         colorscheme rose-pine-light
-        highlight ALEError ctermbg=lightred
-        highlight ALEWarning ctermbg=lightblue
+        highlight ALEWarning ctermbg=blue
     endif
 endfunction
 
@@ -235,4 +243,5 @@ autocmd colorscheme * call LightlineUpdateColorscheme()
 autocmd colorscheme * highlight Pmenu ctermbg=blue
 autocmd colorscheme * highlight signcolumn ctermbg=black
 autocmd colorscheme * highlight visual ctermbg=black
-autocmd colorscheme * highlight ALEError ctermbg=black ctermfg=red cterm=underline
+autocmd colorscheme * highlight ALEError ctermfg=red ctermbg=lightyellow
+autocmd colorscheme * highlight MatchParen ctermbg=black cterm=bold

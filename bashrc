@@ -132,3 +132,5 @@ alias gcmap='git commit -a && git push'
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export VISUAL=vim
 export PATH=~/chaeriapps/:$PATH
+export BAT_THEME='base16'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
