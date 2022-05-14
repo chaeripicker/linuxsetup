@@ -1,9 +1,8 @@
 fzf theme inside vim
 fzf enable preview only when searching file (in vim)
-fix to theme bug
+(ok)fix to theme bug
 make delta use ansi colours
-make 
-x callback over mosh
+(ok)x callback over mosh
 notification over mosh
 customize vimspector
 c# better syntax highlighting plugin?
@@ -11,5 +10,8 @@ bat use syntax in omnisharp
 fugutive to statusline?
 fork lightline vim and do my theme changes
 korean plugin
-detect theme change?
-iphones battery status?
+(ok)detect theme change?
+(possible but combersome)iphones battery status?
+(ok)iphone edit selection in vim
+even current playing song and volume and airpods connection
+orientation lock wifi data notify focus mode

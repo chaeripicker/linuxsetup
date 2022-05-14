@@ -11,6 +11,7 @@ Plug 'itchyny/vim-cursorword'
 Plug 'maximbaz/lightline-ale'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
+Plug 'rpopic2/idarkmode.vim'
 call plug#end()
 
 " Settings: {{{
@@ -226,27 +227,17 @@ let g:lightline#ale#indicator_ok = "✓"
 
 " Colorscheme
 colorscheme rose-pine-light
-map <space>c :call MyToggleRosePine()<CR>
+au User IdkAppearanceChanged call IdkmodUpdateLightline() 
 
-function! MyToggleRosePine()
-    if &background == 'light'
-        colorscheme default
-        colorscheme rose-pine-dark
-        highlight ALEWarning ctermbg=darkgreen
-    else
-        colorscheme default
-        colorscheme rose-pine-light
-        highlight ALEWarning ctermbg=blue
-    endif
-endfunction
-
-function! LightlineUpdateColorscheme()
-    execute 'source' globpath(&rtp, 'autoload/lightline/colorscheme/rosepine.vim')
-    call lightline#colorscheme()
-    call lightline#update()
-endfunction
-autocmd colorscheme * call LightlineUpdateColorscheme()
-autocmd colorscheme * highlight Pmenu ctermbg=blue
-autocmd colorscheme * highlight signcolumn ctermbg=black
-autocmd colorscheme * highlight visual ctermbg=black
-autocmd colorscheme * highlight ALEError ctermfg=red ctermbg=lightyellow
+let g:IDarkModeDarkTheme = 'rose-pine-dark'
+let g:IDarkModeLightTheme = 'rose-pine-light'
+let g:IDarkModeLightlineThemePath = 'autoload/lightline/colorscheme/rosepine.vim'
+autocmd! FileType fzf set laststatus=0
+            \|autocmd BufLeave <buffer> set laststatus=2
+au VimEnter * doau User IdkAppearanceChanged
+autocmd User IdkAppearanceChanged highlight Pmenu ctermbg=blue
+autocmd User IdkAppearanceChanged highlight signcolumn ctermbg=black
+autocmd User IdkAppearanceChanged highlight visual ctermbg=black
+autocmd User IdkAppearanceChanged highlight MatchParen ctermbg=black cterm=bold
+autocmd User IdkAppearanceChanged highlight ALEError ctermfg=red ctermbg=lightyellow
+autocmd User IdkAppearanceChanged highlight ALEWarning ctermbg=blue
