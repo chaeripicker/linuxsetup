@@ -166,9 +166,23 @@ let g:OmniSharp_highlight_groups = {
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
-map <cr>pid :!getddpid<CR>
+map <space>pid :!pgrep TheDarkDungeons<CR>
 map <space>5 :call vimspector#Launch()<CR>
+map <space>dbg :call VimspectorAttatch()<CR> 
 map <space>sdb :OmniSharpDebugProject<cr>
+
+function VimspectorAttatch()
+    let g:pid = system("pgrep TheDarkDungeons")
+    call vimspector#LaunchWithConfigurations({
+                \  "attach": {
+                \    "adapter": "netcoredbg",
+                \    "configuration": {
+                \      "request": "attach",
+                \      "processId": g:pid
+                \    }
+                \  }
+                \})
+endfunction
 
 " Lightline
 let g:lightline = {
@@ -236,6 +250,7 @@ autocmd! FileType fzf set laststatus=0
             \|autocmd BufLeave <buffer> set laststatus=2
 au VimEnter * doau User IdkAppearanceChanged
 autocmd User IdkAppearanceChanged highlight Pmenu ctermbg=blue
+autocmd User IdkAppearanceChanged highlight Search ctermfg=lightgreen
 autocmd User IdkAppearanceChanged highlight signcolumn ctermbg=black
 autocmd User IdkAppearanceChanged highlight visual ctermbg=black
 autocmd User IdkAppearanceChanged highlight MatchParen ctermbg=black cterm=bold
