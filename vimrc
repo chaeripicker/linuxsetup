@@ -12,7 +12,7 @@ Plug 'maximbaz/lightline-ale'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
-Plug 'rpopic2/idarkmode.vim'
+"Plug 'rpopic2/idarkmode.vim'
 call plug#end()
 
 " Settings: {{{
@@ -252,11 +252,11 @@ let g:lightline#ale#indicator_ok = "✓"
 
 " Colorscheme
 colorscheme rose-pine-light
-au User IdkAppearanceChanged call IdkmodUpdateLightline() 
+"au User IdkAppearanceChanged call IdkmodUpdateLightline() 
 
-let g:IDarkModeDarkTheme = 'rose-pine-dark'
-let g:IDarkModeLightTheme = 'rose-pine-light'
-let g:IDarkModeLightlineThemePath = 'autoload/lightline/colorscheme/rosepine.vim'
+"let g:IDarkModeDarkTheme = 'rose-pine-dark'
+"let g:IDarkModeLightTheme = 'rose-pine-light'
+"let g:IDarkModeLightlineThemePath = 'autoload/lightline/colorscheme/rosepine.vim'
 autocmd! FileType fzf set laststatus=0
             \|autocmd BufLeave <buffer> set laststatus=2
 au VimEnter * doau User IdkAppearanceChanged
