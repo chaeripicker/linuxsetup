@@ -1,9 +1,9 @@
 call plug#begin('~/.vim/plugged')
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'OmniSharp/omnisharp-vim'
-Plug 'sirver/ultisnips'
 Plug 'nickspoons/vim-sharpenup'
 Plug 'dense-analysis/ale'
+Plug 'sirver/ultisnips'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
@@ -11,6 +11,7 @@ Plug 'itchyny/vim-cursorword'
 Plug 'maximbaz/lightline-ale'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'rpopic2/idarkmode.vim'
 call plug#end()
 
@@ -40,6 +41,7 @@ set splitright
 
 set hlsearch
 set incsearch
+set smartcase
 set laststatus=2
 set nonumber
 set noruler
@@ -47,20 +49,31 @@ set noshowmode
 
 set mouse=a
 set updatetime=1000
-" my maps
+
+" Mappings
+" " Tab Manipulation
 map <space>t :tabnew<CR>
+map <space>T :tabnew<cr><c-o>
+map gD :tabnew<CR><c-o>gd
+" " Git / fugitive.vim
 map <space>g :G<space>
-map <space><space> :
-map <space>/ :noh<CR>
+map <space>diff :!git diff
+" " .vimrc
 map <space>rc :e $MYVIMRC<CR>
 map <space>rr :source $MYVIMRC<CR>
+" " Parentheses autocompletion
 imap [<space> [<space>]<space>
 imap {<CR> {<CR>}<esc>O
+" " For Mobile
+map <space><space> :
+map <space>/ :noh<CR>
 map $$ A;<esc>
 map K :OmniSharpSignatureHelp<CR>
-map gD :tabnew<CR><c-o>gd
+imap <c-k> map K :OmniSharpSignatureHelp<CR>
+" " Others
 map <cr><cr> o<esc>
-"fzf.vim
+
+" "fzf.vim
 map <cr>f :Files<cr>
 map <cr>g :GFiles<cr>
 map <cr>G :GFiles?<cr>
@@ -126,7 +139,7 @@ inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " Sharpenup: {{{
 " All sharpenup mappings will begin with `<Space>os`, e.g. `<Space>osgd` for
 " :OmniSharpGotoDefinition
-let g:sharpenup_map_prefix = '<Space>s'
+let g:sharpenup_map_prefix = '<Space>'
 let g:sharpenup_statusline_opts = {
 \ 'TextLoading': ' O#: %s ~ (%p / %P) ',
 \ 'TextReady': '#',
@@ -166,10 +179,8 @@ let g:OmniSharp_highlight_groups = {
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
-map <space>pid :!pgrep TheDarkDungeons<CR>
-map <space>5 :call vimspector#Launch()<CR>
-map <space>dbg :call VimspectorAttatch()<CR> 
-map <space>sdb :OmniSharpDebugProject<cr>
+map <space>db :call VimspectorAttatch()<CR> 
+map <space>dp :OmniSharpDebugProject<cr>
 
 function VimspectorAttatch()
     let g:pid = system("pgrep TheDarkDungeons")
@@ -250,7 +261,7 @@ autocmd! FileType fzf set laststatus=0
             \|autocmd BufLeave <buffer> set laststatus=2
 au VimEnter * doau User IdkAppearanceChanged
 autocmd User IdkAppearanceChanged highlight Pmenu ctermbg=blue
-autocmd User IdkAppearanceChanged highlight Search ctermfg=lightgreen
+autocmd User IdkAppearanceChanged highlight Search ctermfg=black
 autocmd User IdkAppearanceChanged highlight signcolumn ctermbg=black
 autocmd User IdkAppearanceChanged highlight visual ctermbg=black
 autocmd User IdkAppearanceChanged highlight MatchParen ctermbg=black cterm=bold

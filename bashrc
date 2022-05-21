@@ -138,3 +138,7 @@ export LESS='--mouse'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_COMPLETION_TRIGGER='``'
 export FZF_DEFAULT_OPTS='--preview "bat --style=auto --color=always --wrap=character --line-range :500 {}"'
+
+if [[ $(id -u) -eq 1001 ]];then
+    PS1='🍒:\W\$ '
+fi
