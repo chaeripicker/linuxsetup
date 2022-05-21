@@ -49,6 +49,7 @@ set noshowmode
 
 set mouse=a
 set updatetime=1000
+set timeoutlen=260
 
 " Mappings
 " " Tab Manipulation
