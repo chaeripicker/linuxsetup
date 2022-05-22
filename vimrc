@@ -11,7 +11,6 @@ Plug 'itchyny/vim-cursorword'
 Plug 'maximbaz/lightline-ale'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-commentary'
 "Plug 'rpopic2/idarkmode.vim'
 call plug#end()
 
@@ -73,6 +72,9 @@ map K :OmniSharpSignatureHelp<CR>
 imap <c-k> map K :OmniSharpSignatureHelp<CR>
 " " Others
 map <cr><cr> o<esc>
+" " Comment
+noremap gc I//<esc>
+xmap gc <c-v><c-i>//<esc>
 
 " "fzf.vim
 map <cr>f :Files<cr>
@@ -133,6 +135,7 @@ let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
 autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> . pumvisible() ? "\<C-n>." : "."
+inoremap <expr> <space> pumvisible() ? "\<C-n><space>" : " "
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}

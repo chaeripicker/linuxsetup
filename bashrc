@@ -134,11 +134,11 @@ export DOTNET_CLI_TELEMETRY_OPTOUT=1
 export VISUAL=vim
 export PATH=~/chaeriapps/:$PATH
 export BAT_THEME='base16'
-export LESS='--mouse'
+export LESS='--mouse --wheel-lines=2'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 export FZF_COMPLETION_TRIGGER='``'
 export FZF_DEFAULT_OPTS='--preview "bat --style=auto --color=always --wrap=character --line-range :500 {}"'
 
-if [[ $(id -u) -eq 1001 ]];then
+if [[ $(id -u) -eq 1000 ]];then
     PS1='🍒:\W\$ '
 fi

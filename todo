@@ -9,6 +9,8 @@ korean plugin -> adding esc to the end might work?
 add delta dpkg
 add .gitconfig
 add .tmux.conf
+make c# comment plugin
+make my list plugin : checked lists go to the top automatically, [<space> to create a list
 
 (ok)x callback over mosh
 (ok)fzf theme inside vim
