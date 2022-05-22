@@ -1,5 +1,7 @@
 call plug#begin('~/.vim/plugged')
 Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'honza/vim-snippets'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'nickspoons/vim-sharpenup'
 Plug 'dense-analysis/ale'
@@ -20,7 +22,7 @@ filetype indent plugin on
 set encoding=utf-8
 scriptencoding utf-8
 
-set completeopt=menuone,noinsert,noselect,popuphidden
+set completeopt=menuone,noinsert,noselect,popuphidden,preview
 set completepopup=highlight:Pmenu,border:off
 
 set backspace=indent,eol,start
@@ -51,13 +53,15 @@ set updatetime=1000
 set timeoutlen=260
 
 " Mappings
+" " OmniSharp
+map gD :OmniSharpGotoDefinition tabedit<cr>
+map <space>fm :OmniSharpFindMembers<cr>
 " " Tab Manipulation
 map <space>c :tabnew<CR>
 map <space>C :tabnew<cr><c-o>
-map gD :tabnew<CR><c-o>gd
 " " Git / fugitive.vim
 map <space>g :G<space>
-map <space>diff :!git diff
+map <space>dif :!git diff
 " " .vimrc
 map <space>rc :e $MYVIMRC<CR>
 map <space>rr :source $MYVIMRC<CR>
@@ -134,14 +138,18 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 " Asyncomplete: {{{
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
-autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
 
+" Asyncomplete-ultisnips: {{{
+let g:OmniSharp_want_snippet = 1
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsListSnippets="<c-b>"
+" }}}
+
 " Sharpenup: {{{
-" All sharpenup mappings will begin with `<Space>os`, e.g. `<Space>osgd` for
-" :OmniSharpGotoDefinition
 let g:sharpenup_map_prefix = '<Space>'
 let g:sharpenup_statusline_opts = {
 \ 'TextLoading': ' O#: %s ~ (%p / %P) ',
@@ -162,6 +170,8 @@ let g:sharpenup_codeactions = 0
 " OmniSharp: {{{
 let g:OmniSharp_server_use_net6 = 1
 let g:OmniSharp_popup_position = 'peek'
+let g:OmniSharp_selector_ui = 'fzf'
+"let g:OmniSharp_selector_findmembers = 'fzf'
   let g:OmniSharp_popup_options = {
   \ 'highlight': 'Normal',
   \ 'padding': [0, 0, 0, 0],
@@ -174,11 +184,11 @@ let g:OmniSharp_popup_mappings = {
 \ 'pageUp': ['<C-b>', '<PageUp>']
 \}
 
-let g:OmniSharp_want_snippet = 1
 let g:OmniSharp_highlight_groups = {
 \ 'ExcludedCode': 'NonText'
 \}
 " }}}
+
 " Auto testing
 " au BufWritePost *.cs call RunTest()
 map <space>test :call RunTest()<cr>
