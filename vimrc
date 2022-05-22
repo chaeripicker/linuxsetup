@@ -1,11 +1,11 @@
 call plug#begin('~/.vim/plugged')
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+Plug 'sirver/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'OmniSharp/omnisharp-vim'
 Plug 'nickspoons/vim-sharpenup'
 Plug 'dense-analysis/ale'
-Plug 'sirver/ultisnips'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
@@ -13,6 +13,7 @@ Plug 'itchyny/vim-cursorword'
 Plug 'maximbaz/lightline-ale'
 Plug 'puremourning/vimspector'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 "Plug 'rpopic2/idarkmode.vim'
 call plug#end()
 
@@ -76,9 +77,6 @@ map K :OmniSharpSignatureHelp<CR>
 imap <c-k> map K :OmniSharpSignatureHelp<CR>
 " " Others
 map <cr><cr> o<esc>
-" " Comment
-noremap gc I//<esc>
-xmap gc <c-v><c-i>//<esc>
 
 " "fzf.vim
 map <cr>f :Files<cr>
@@ -124,6 +122,9 @@ map ㅋ z
 
 " }}}
 
+" commentary-vim
+set commentstring=//%s
+  
 
 " ALE: {{{
 let g:ale_sign_error = '•'
