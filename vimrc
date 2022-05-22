@@ -52,8 +52,8 @@ set timeoutlen=260
 
 " Mappings
 " " Tab Manipulation
-map <space>t :tabnew<CR>
-map <space>T :tabnew<cr><c-o>
+map <space>c :tabnew<CR>
+map <space>C :tabnew<cr><c-o>
 map gD :tabnew<CR><c-o>gd
 " " Git / fugitive.vim
 map <space>g :G<space>
@@ -79,6 +79,7 @@ xmap gc <c-v><c-i>//<esc>
 " "fzf.vim
 map <cr>f :Files<cr>
 map <cr>g :GFiles<cr>
+map <C-g> :tabnew<cr>:GFiles<cr>
 map <cr>G :GFiles?<cr>
 map <cr>L :Lines<cr>
 map <cr>l :BLines<cr>
@@ -134,8 +135,6 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 0
 autocmd VimEnter * inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> . pumvisible() ? "\<C-n>." : "."
-inoremap <expr> <space> pumvisible() ? "\<C-n><space>" : " "
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 " }}}
@@ -180,6 +179,14 @@ let g:OmniSharp_highlight_groups = {
 \ 'ExcludedCode': 'NonText'
 \}
 " }}}
+" Auto testing
+" au BufWritePost *.cs call RunTest()
+map <space>test :call RunTest()<cr>
+function RunTest()
+    execute "silent !~/TheDarkDungeons/DarkDungeon.Tests/fulltest.sh > testresult.txt"
+    redraw!
+endfunction
+map <space>res :!bat testresult.txt<cr>
 
 " Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
